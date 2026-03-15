@@ -6,18 +6,18 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.name.label }}<br>
-            {{ form.name(class="form-control") }}<br>
-            {% for error in form.name.errors %}
+            {{ form.first_name.label }}<br>
+            {{ form.first_name(class="form-control") }}<br>
+            {% for error in form.first_name.errors %}
                 <p class="alert alert-danger" role="alert">
                     {{ error }}
                 </p>
             {% endfor %}
         </p>
         <p>
-            {{ form.surname.label }}<br>
-            {{ form.surname(class="form-control") }}<br>
-            {% for error in form.surname.errors %}
+            {{ form.last_name.label }}<br>
+            {{ form.last_name(class="form-control") }}<br>
+            {% for error in form.last_name.errors %}
                 <p class="alert alert-danger" role="alert">
                     {{ error }}
                 </p>
@@ -45,33 +45,6 @@
             {{ form.password_again.label }}<br>
             {{ form.password_again(class="form-control", type="password") }}<br>
             {% for error in form.password_again.errors %}
-                <p class="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.type.label }}<br>
-            {{ form.type(type="radio") }}
-            {% for error in form.type.errors %}
-                <p class="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.gender.label }}<br>
-            {{ form.gender(type="radio") }}
-            {% for error in form.gender.errors %}
-                <p class="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.age.label }}<br>
-            {{ form.age(class="form-control") }}<br>
-            {% for error in form.age.errors %}
                 <p class="alert alert-danger" role="alert">
                     {{ error }}
                 </p>

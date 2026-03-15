@@ -36,7 +36,7 @@ def register():
         if form.password.data != form.password_again.data:
             return render_template("register.html", form=form, message="Пароли не совпадают")
         db_sess = db_session.create_session()
-        if db_sess.query(User).get(User.email == form.email.data):
+        if db_sess.query(User).filter(User.email == form.email.data).first():
             return render_template("register.html", form=form, message="Указанная почта занята")
 
         user = new_user(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
@@ -52,7 +52,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        user = db_sess.query(User).get(User.email == form.email.data)
+        user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user:
             login_user(user)
             return redirect("/")

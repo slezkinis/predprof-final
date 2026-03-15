@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4"> <!-- Основной контейнер -->
+  <div id="product-container" class="row"> <!-- Контейнер для карточек товаров -->
+    <!-- Карточки товаров будут добавляться сюда -->
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Подключаем Bootstrap JavaScript -->
+
+<script src="{{ url_for('static', filename='scripts/loadProducts.js') }}"></script>
+
+{% endblock %}
