@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect
 from data import db_session
 from data.user import User
 from forms.register import RegisterForm
@@ -20,35 +20,27 @@ def load_user(user_id):
 
 @app.route('/')
 def main_page():
-    params = {
-        'css_style': url_for('static', filename='css/main_page.css')
-    }
-    return render_template('main_page.html', **params)
+    return render_template('main_page.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
-    params = {
-        'css_style': url_for('static', filename='css/main_page.css')
-    }
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
-                                   form=form,
-                                   message="Пароли не совпадают", **params)
+            return render_template('register.html', title='Регистрация', form=form,
+                                   message="Пароли не совпадают")
         db_sess = db_session.create_session()
         if db_sess.query(User).get(User.email == form.email.data):
-            return render_template('register.html', title='Регистрация',
-                                   form=form,
-                                   message="Указанная почта занята", **params)
+            return render_template('register.html', title='Регистрация', form=form,
+                                   message="Указанная почта занята")
 
         user = new_user(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
 
         db_sess.add(user)
         login_user(user)
         return redirect('/')
-    return render_template('register.html', title='Регистрация', form=form, **params)
+    return render_template('register.html', title='Регистрация', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
