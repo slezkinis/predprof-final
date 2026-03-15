@@ -1,16 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4"> <!-- Основной контейнер -->
-  <div id="product-container" class="row"> <!-- Контейнер для карточек товаров -->
-    <!-- Карточки товаров будут добавляться сюда -->
-  </div>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<div class="upload-container">
+    <h1 class="title">Загрузить аудиофайл</h1>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="file-input-wrapper">
+            <label for="mp3File" class="file-label">
+                Выберите WAV файл
+            </label>
+            <input type="file" id="wavFile" name="file" accept=".wav ,audio/mpeg" required>
+            <span id="fileName" class="file-name">Файл не выбран</span>
+        </div>
+
+        <button type="submit" class="upload-button" id="submitBtn">
+            Загрузить и обработать
+        </button>
+    </form>
+
+    <!-- Индикатор загрузки -->
+    <div class="loader" id="loader" style="display: none;">
+        <div class="spinner"></div>
+        <p>Обработка файла...</p>
+    </div>
+
+    <!-- Блок для вывода текста -->
+    <div class="result-area">
+        <h2 class="result-title">Результат:</h2>
+        <div id="outputText" class="output-text">
+            <!-- Сюда будет выведен текст -->
+            <span class="placeholder">Здесь появится текст после обработки...</span>
+        </div>
+    </div>
+
+    <div class="error-message" id="errorMessage"></div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Подключаем Bootstrap JavaScript -->
-
-<script src="{{ url_for('static', filename='scripts/loadProducts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
 
 {% endblock %}
