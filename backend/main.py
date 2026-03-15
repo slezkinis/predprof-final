@@ -22,7 +22,9 @@ def load_user(user_id):
 def main_page():
     if request.method == "POST":
         file = request.files["file"]
-        return render_template("main.html", result="100")
+        return {
+            "message": 'PLANET'
+        }
     return render_template("main.html")
 
 
