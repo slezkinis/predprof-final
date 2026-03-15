@@ -24,23 +24,24 @@ def main_page():
 
 
 @app.route('/register', methods=['GET', 'POST'])
+@login_required
 def register():
+    if not current_user.is_admin:
+        return redirect('/')
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация', form=form,
-                                   message="Пароли не совпадают")
+            return render_template('register.html', form=form, message="Пароли не совпадают")
         db_sess = db_session.create_session()
         if db_sess.query(User).get(User.email == form.email.data):
-            return render_template('register.html', title='Регистрация', form=form,
-                                   message="Указанная почта занята")
+            return render_template('register.html', form=form, message="Указанная почта занята")
 
         user = new_user(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
 
         db_sess.add(user)
         login_user(user)
         return redirect('/')
-    return render_template('register.html', title='Регистрация', form=form)
+    return render_template('register.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -53,10 +54,11 @@ def login():
             login_user(user)
             return redirect("/")
         return render_template('login.html', message="Неправильный логин или пароль", form=form)
-    return render_template('login.html', title='Авторизация', form=form)
+    return render_template('login.html', form=form)
 
 
 @app.route('/account')
+@login_required
 def account():
     return render_template('account.html', user=current_user)
 
