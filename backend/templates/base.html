@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pent.ai</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Подключаем Bootstrap CSS -->
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">pent.ai</a>
+        {% if current_user.is_authenticated %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    {% if current_user.is_admin == True %}
+                        <a class="btn btn btn-outline-dark btn-animated" href="/register">Зарегистрировать пользователя</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-account-btn" href="/account">{{ current_user.first_name }} {{ current_user.last_name }}</a>
+                </li>
+            </ul>
+        {% else %}
+            <p class="ml-auto">
+                <a class="btn btn btn-outline-dark btn-animated" href="/login">Войти</a>
+            </p>
+        {% endif %}
+    </div>
+</nav>
+
+{% block content %}{% endblock %}

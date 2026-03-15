@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка MP3</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+</head>
+<body>
+
+    <div class="upload-container">
+        <h1 class="title">Загрузить аудиофайл</h1>
+        
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="file-input-wrapper">
+                <label for="mp3File" class="file-label">
+                    Выберите WAV файл
+                </label>
+                <input type="file" id="wavFile" name="file" accept=".wav ,audio/mpeg" required>
+                <span id="fileName" class="file-name">Файл не выбран</span>
+            </div>
+
+            <button type="submit" class="upload-button" id="submitBtn">
+                Загрузить и обработать
+            </button>
+        </form>
+
+        <!-- Индикатор загрузки -->
+        <div class="loader" id="loader" style="display: none;">
+            <div class="spinner"></div>
+            <p>Обработка файла...</p>
+        </div>
+
+        <!-- Блок для вывода текста -->
+        <div class="result-area">
+            <h2 class="result-title">Результат:</h2>
+            <div id="outputText" class="output-text">
+                <!-- Сюда будет выведен текст -->
+                <span class="placeholder">Здесь появится текст после обработки...</span>
+            </div>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <!-- Подключение JS -->
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>
