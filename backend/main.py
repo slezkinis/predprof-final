@@ -18,7 +18,7 @@ def load_user(user_id):
     return db_sess.query(User).get(user_id)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', "POST"])
 def main_page():
     return render_template('main_page.html')
 
@@ -68,11 +68,6 @@ def account():
 def leave_account():
     logout_user()
     return redirect('/')
-
-
-@app.route('/admin')
-def admin():
-    return render_template("admin.html")
 
 
 db_session.global_init("db/db.db")
