@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f0f0f0; /* Добавил фон для контраста */
+}
+
+.login {
+    width: 35%;
+    height: 65%;
+    background-color: white;
+    border-radius: 0.375rem;
+    position: relative;
+    top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding-bottom: 1%;
+    min-height: fit-content;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Добавил тень для красоты */
+}
+
+.input {
+    border: 2px solid rgb(179, 179, 179);
+    border-radius: 0.375rem;
+    padding-left: 2%;
+    width: 84%;
+    height: 10%;
+    box-sizing: border-box; /* Важно для корректного расчета ширины */
+}
+
+.title {
+    margin-top: 0;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    padding-top: 5%;
+}
+
+.input_text {
+    text-align: start;
+    margin-left: 7%;
+    margin-bottom: 2%;
+    padding-top: 4%;
+}
+
+.input_text label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.login_button {
+    width: 87%;
+    height: 10%;
+    margin-top: 6%;
+    color: white;
+    border-radius: 0.375rem;
+    background-color: rgb(65, 65, 255);
+    border: 2px solid rgb(68, 65, 255);
+    font-size: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.link {
+    display: block;
+    text-decoration: none;
+    margin-top: 4%;
+}
+
+.error_message {
+    align-items: center;
+    padding-top: 3%;
+    color: red;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.login_button:hover {
+    box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+}
